@@ -1,7 +1,8 @@
 <%-- 
-    Document   : index
-    Created on : Apr 23, 2014, 10:27:52 PM
-    Author     : wdschei
+ * Copyright (c) 2014 Test Inc.
+ * All rights reserved.
+ *
+ * This distribution may include materials developed by third parties.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
