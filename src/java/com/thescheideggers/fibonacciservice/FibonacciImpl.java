@@ -52,6 +52,47 @@ public class FibonacciImpl
     * <p/>
     * @param len the desired length of the Fibonacci sequence
     * <p/>
+    * @return the Fibonacci sequence as a String
+    * <p/>
+    * @throws IllegalArgumentException if an the length is less than one
+    */
+   public static String getFibonacciString(int len) throws IllegalArgumentException
+   {
+      final StringBuffer rtn = new StringBuffer();
+      try
+      {
+         final long[] vals = FibonacciImpl.getFibonacci(len);
+         boolean first = true;
+         // FOR each element of the array...
+         for(int idx = 0; idx < vals.length; idx++)
+         {
+            // IF this is the first time through the loop,
+            // THEN reset the flag;
+            // ELSE append a space to the buffer.
+            if(first)
+            {
+               first = false;
+            }
+            else
+            {
+               rtn.append(" ");
+            }
+            // Append the value of the current element.
+            rtn.append(vals[idx]);
+         }
+      }
+      catch(IllegalArgumentException ex)
+      {
+         rtn.append(ex.getMessage());
+      }
+      return rtn.toString();
+   }
+
+   /**
+    * Returns a Fibonacci sequence of the specified length.
+    * <p/>
+    * @param len the desired length of the Fibonacci sequence
+    * <p/>
     * @return the Fibonacci sequence
     * <p/>
     * @throws IllegalArgumentException if an the length is less than one
