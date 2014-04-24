@@ -12,6 +12,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.GET;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -55,7 +56,6 @@ import javax.ws.rs.core.MediaType;
  * <p/>
  * @author <a href="mailto:William.Scheidegger@GMail.com?subject=FibonacciService%20JavaDoc">William Scheidegger</a>
  */
-@Path("fibonacci")
 public class FibonacciService
 {
    @Context
@@ -73,13 +73,41 @@ public class FibonacciService
     * <p/>
     * @return the max number of values in the sequence
     */
+   @Path("/fibonacci")
    @GET
-   @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-   public ResponseString getFibonacci()
-   //public ResponseArray getFibonacci()
+   @Consumes({MediaType.TEXT_HTML})
+   @Produces({MediaType.TEXT_HTML})
+   public String getFibonacciHtml()
    {
-      return new ResponseString(FibonacciImpl.getFibonacciString(FibonacciImpl.LEN_MAX));
-      //return new ResponseArray(FibonacciImpl.getFibonacci(FibonacciImpl.LEN_MAX));
+      return "<html><body>"+FibonacciImpl.getFibonacciString(FibonacciImpl.LEN_MAX)+"</body></html>";
+   }
+
+   /**
+    * Returns the desired sequence.
+    * <p/>
+    * @param len the desired number of values in the sequence
+    * <p/>
+    * @return the desired sequence
+    */
+   @Path("/fibonacci/{len}")
+   @GET
+   @Consumes({MediaType.TEXT_HTML})
+   @Produces({MediaType.TEXT_HTML})
+   //public String getFibonacciHtml()
+   public String getFibonacciHtml(@PathParam("len") String len)
+   {
+      int length;
+      String rtn;
+      try
+      {
+         length = Integer.parseInt(len);
+         rtn = "<html><body>"+FibonacciImpl.getFibonacciString(length)+"</body></html>";
+      }
+      catch(NumberFormatException ex)
+      {
+         rtn = "<html><body><b>ERROR:</b> "+ex.getMessage()+"</body></html>";
+      }
+      return rtn;
    }
 
    /**
@@ -87,12 +115,17 @@ public class FibonacciService
     * <p/>
     * @return the max number of values in the sequence
     */
+   @Path("fibonacci")
    @GET
-   @Consumes({MediaType.TEXT_HTML})
-   @Produces({MediaType.TEXT_HTML})
-   public ResponseString getFibonacciHtml()
+   @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+   public ResponseString getFibonacci()
+   ////////////////////////////////////////////////////////////////////////////////
+   ////  NOTE: Another alternate implementation might be to return the array in the JSON
+   ////public ResponseArray getFibonacci()
+   ////////////////////////////////////////////////////////////////////////////////
    {
-      return new ResponseString("<html><body>"+FibonacciImpl.getFibonacciString(FibonacciImpl.LEN_MAX)+"</body></html>");
+      return new ResponseString(FibonacciImpl.getFibonacciString(FibonacciImpl.LEN_MAX));
+      //return new ResponseArray(FibonacciImpl.getFibonacci(FibonacciImpl.LEN_MAX));
    }
 
    /**
@@ -102,15 +135,14 @@ public class FibonacciService
     * <p/>
     * @return the desired sequence
     */
+   @Path("fibonacci")
    @PUT
    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
    public ResponseString putFibonacci(final Request request)
-   //public ResponseArray putFibonacci(final Request request)
    ////////////////////////////////////////////////////////////////////////////////
-   ////  NOTE: Another alternate implementation might be:
-   ////@Path("/fibonacci/{len}")
-   ////public String putFibonacci(@PathParam("len") int len)
+   ////  NOTE: Another alternate implementation might be to return the array in the JSON
+   ////public ResponseArray putFibonacci(final Request request)
    ////////////////////////////////////////////////////////////////////////////////
    {
       return new ResponseString(FibonacciImpl.getFibonacciString(request.getValue()));
