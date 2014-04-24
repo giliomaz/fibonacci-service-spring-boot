@@ -88,11 +88,11 @@ public class FibonacciService
     * @return the max number of values in the sequence
     */
    @GET
+   @Consumes({MediaType.TEXT_HTML})
    @Produces({MediaType.TEXT_HTML})
    public ResponseString getFibonacciHtml()
    {
-      return new ResponseString(FibonacciImpl.getFibonacciString(FibonacciImpl.LEN_MAX));
-      //return new ResponseArray(FibonacciImpl.getFibonacci(FibonacciImpl.LEN_MAX));
+      return new ResponseString("<html><body>"+FibonacciImpl.getFibonacciString(FibonacciImpl.LEN_MAX)+"</body></html>");
    }
 
    /**
