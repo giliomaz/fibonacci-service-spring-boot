@@ -1,6 +1,19 @@
-FibonacciService
+#FibonacciService
+A RESTful web service that:
+
+ - Accepts a number, <code>n</code>, as input and returns the first <code>n</code> Fibonacci numbers, starting from 0.
+   (i.e. given n = 5, the output would be the sequence "0 1 1 2 3")
+ - The service returns the values as a String in a JSON document.
+ - Given Zero or a negative number, it responds with an error String in the JSON document.
+ - There are unit tests that assert the algorithm output is correct.
+ - The upper boundary on the input is 93 since the 94 value causes an overflow of a 64-bit signed value.
+
+While this project is admittedly trivial since it is my first attempt at a RESTful web service,
+it was approached as if I would have to put it into production and maintain it for a significant period of time.
+
 ================
-# Development Environment
+
+## Development Environment
 
 This section describes how to create the development environment used for this project.
 
@@ -31,3 +44,9 @@ This section describes how to create the development environment used for this p
     - Select <i>Tools -> Java Platforms</i>
        - Click <code>Add Platform ...</code> and select the JDK 7 directory to add JDK 1.7 to the environment.
        - Click <code>Close</code>
+
+================
+
+## Build/Deployment Instructions
+
+This section includes the instructions necessary to build and have the web service accepting requests and responding to them.
