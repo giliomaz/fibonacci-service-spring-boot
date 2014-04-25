@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * <p>
- * This is the ResponseArray object.
+ * This is the ResponseArray object for the FibonacciService.
  * Since JAX-RS supports automatic mapping from a JAXB annotated class to XML and JSON,
  * some of the magic is already taken care of.</p>
  * <p>
@@ -18,17 +18,32 @@ import javax.xml.bind.annotation.XmlRootElement;
  * <p>
  * Company: Test Inc.</p>
  * <p/>
- * @author <a href="mailto:William.Scheidegger@GMail.com?subject=ResponseArray%20JavaDoc">William Scheidegger</a>
+ * @author <a href="mailto:William.Scheidegger@GMail.com?subject=FibonacciResponseArray%20JavaDoc">William Scheidegger</a>
  */
 @XmlRootElement
-public class ResponseArray
+public class FibonacciResponseArray
 {
+   ///**
+   // * Class name.
+   // */
+   //private static final String CLASS_NAME = FibonacciResponseArray.class.getName();
+   ///**
+   // * Logger.
+   // */
+   //private static final Logger LOGGER = Logger.getLogger(CLASS_NAME);
+   /**
+    * Serial Version UID.
+    */
+   private static final long serialVersionUID = 103640251760933139L;
+   /**
+    * The "Value" of this Response.
+    */
    private long[] value;
 
    /**
     * Public no-arg constructor to initialize the "Value" at a minimum.
     */
-   public ResponseArray()
+   public FibonacciResponseArray()
    {
       value = new long[0];
    }
@@ -38,7 +53,7 @@ public class ResponseArray
     * <p/>
     * @param aL the initial value
     */
-   public ResponseArray(final long[] aL)
+   public FibonacciResponseArray(final long[] aL)
    {
       value = aL;
    }

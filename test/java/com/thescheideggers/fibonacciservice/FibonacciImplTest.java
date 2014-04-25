@@ -67,7 +67,7 @@ public class FibonacciImplTest
     * Test of getFibonacciString method, of class FibonacciImpl.
     */
    @Test
-   public void testGetFibonacciStringKAT05()
+   public void testGetFibonacciString_05()
    {
       LOGGER.finest("Starting...");
       final int len = 5;
@@ -81,7 +81,7 @@ public class FibonacciImplTest
     * Test of getFibonacci method, of class Test.
     */
    @Test
-   public void testGetFibonacciKATNeg()
+   public void testGetFibonacci_Neg()
    {
       LOGGER.finest("Starting...");
       final int len = -1;
@@ -111,7 +111,7 @@ public class FibonacciImplTest
     * Test of getFibonacci method, of class Test.
     */
    @Test
-   public void testGetFibonacciKATZero()
+   public void testGetFibonacci_Zero()
    {
       LOGGER.finest("Starting...");
       final int len = 0;
@@ -141,7 +141,7 @@ public class FibonacciImplTest
     * Test of getFibonacci method, of class Test.
     */
    @Test
-   public void testGetFibonacciKAT92()
+   public void testGetFibonacci_92()
    {
       LOGGER.finest("Starting...");
       final int len = 92;
@@ -173,7 +173,7 @@ public class FibonacciImplTest
     * Test of getFibonacci method, of class Test.
     */
    @Test
-   public void testGetFibonacci93()
+   public void testGetFibonacci_93()
    {
       LOGGER.finest("Starting...");
       final int len = 93;
@@ -205,7 +205,7 @@ public class FibonacciImplTest
     * Test of getFibonacci method, of class Test.
     */
    @Test
-   public void testGetFibonacci94()
+   public void testGetFibonacci_94()
    {
       LOGGER.finest("Starting...");
       final int len = 94;

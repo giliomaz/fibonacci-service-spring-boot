@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * <p>
- * This is the Request object.
+ * This is the Request object for the FibonacciService.
  * Since JAX-RS supports automatic mapping from a JAXB annotated class to XML and JSON,
  * some of the magic is already taken care of.</p>
  * <p>
@@ -18,17 +18,32 @@ import javax.xml.bind.annotation.XmlRootElement;
  * <p>
  * Company: Test Inc.</p>
  * <p/>
- * @author <a href="mailto:William.Scheidegger@GMail.com?subject=Request%20JavaDoc">William Scheidegger</a>
+ * @author <a href="mailto:William.Scheidegger@GMail.com?subject=FibonacciRequest%20JavaDoc">William Scheidegger</a>
  */
 @XmlRootElement
-public class Request
+public class FibonacciRequest
 {
+   ///**
+   // * Class name.
+   // */
+   //private static final String CLASS_NAME = FibonacciRequest.class.getName();
+   ///**
+   // * Logger.
+   // */
+   //private static final Logger LOGGER = Logger.getLogger(CLASS_NAME);
+   /**
+    * Serial Version UID.
+    */
+   private static final long serialVersionUID = 103640251760933139L;
+   /**
+    * The "Value" of this Request.
+    */
    private int value;
 
    /**
     * Public no-arg constructor to initialize the "Value" at a minimum.
     */
-   public Request()
+   public FibonacciRequest()
    {
       value = 0;
    }
@@ -38,7 +53,7 @@ public class Request
     * <p/>
     * @param i the initial value
     */
-   public Request(final int i)
+   public FibonacciRequest(final int i)
    {
       value = i;
    }

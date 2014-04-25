@@ -58,6 +58,21 @@ import javax.ws.rs.core.MediaType;
  */
 public class FibonacciService
 {
+   ///**
+   // * Class name.
+   // */
+   //private static final String CLASS_NAME = FibonacciResponseString.class.getName();
+   ///**
+   // * Logger.
+   // */
+   //private static final Logger LOGGER = Logger.getLogger(CLASS_NAME);
+   /**
+    * Serial Version UID.
+    */
+   private static final long serialVersionUID = 103640251760933139L;
+   /**
+    * The Context for this RESTful Service.
+    */
    @Context
    private UriInfo context;
 
@@ -111,41 +126,60 @@ public class FibonacciService
    }
 
    /**
-    * Returns the max number of values in the sequence.
+    * Returns the max number of values in the sequence as a String.
     * <p/>
-    * @return the max number of values in the sequence
+    * @return the max number of values in the sequence as a String
     */
    @Path("fibonacci")
    @GET
    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-   public ResponseString getFibonacci()
-   ////////////////////////////////////////////////////////////////////////////////
-   ////  NOTE: Another alternate implementation might be to return the array in the JSON
-   ////public ResponseArray getFibonacci()
-   ////////////////////////////////////////////////////////////////////////////////
+   public FibonacciResponseString getFibonacciString()
    {
-      return new ResponseString(FibonacciImpl.getFibonacciString(FibonacciImpl.LEN_MAX));
-      //return new ResponseArray(FibonacciImpl.getFibonacci(FibonacciImpl.LEN_MAX));
+      return new FibonacciResponseString(FibonacciImpl.getFibonacciString(FibonacciImpl.LEN_MAX));
    }
 
    /**
-    * Returns the desired sequence.
+    * Returns the max number of values in the sequence as an Array.
+    * <p/>
+    * @return the max number of values in the sequence as an Array
+    */
+   @Path("fibonacciArray")
+   @GET
+   @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+   public FibonacciResponseArray getFibonacciArray()
+   {
+      return new FibonacciResponseArray(FibonacciImpl.getFibonacci(FibonacciImpl.LEN_MAX));
+   }
+
+   /**
+    * Returns the desired sequence as a String.
     * <p/>
     * @param request the desired number of values in the sequence
     * <p/>
-    * @return the desired sequence
+    * @return the desired sequence as a String
     */
    @Path("fibonacci")
    @PUT
    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-   public ResponseString putFibonacci(final Request request)
-   ////////////////////////////////////////////////////////////////////////////////
-   ////  NOTE: Another alternate implementation might be to return the array in the JSON
-   ////public ResponseArray putFibonacci(final Request request)
-   ////////////////////////////////////////////////////////////////////////////////
+   public FibonacciResponseString putFibonacciString(final FibonacciRequest request)
    {
-      return new ResponseString(FibonacciImpl.getFibonacciString(request.getValue()));
-      //return new ResponseArray(FibonacciImpl.getFibonacci(request.getValue()));
+      return new FibonacciResponseString(FibonacciImpl.getFibonacciString(request.getValue()));
+   }
+
+   /**
+    * Returns the desired sequence as an Array.
+    * <p/>
+    * @param request the desired number of values in the sequence
+    * <p/>
+    * @return the desired sequence as an Array
+    */
+   @Path("fibonacciArray")
+   @PUT
+   @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+   @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+   public FibonacciResponseArray putFibonacciArray(final FibonacciRequest request)
+   {
+      return new FibonacciResponseArray(FibonacciImpl.getFibonacci(request.getValue()));
    }
 }
