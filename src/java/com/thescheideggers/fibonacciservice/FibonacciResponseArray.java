@@ -55,7 +55,15 @@ public class FibonacciResponseArray
     */
    public FibonacciResponseArray(final long[] aL)
    {
-      value = aL;
+      if(aL == null || aL.length == 0)
+      {
+         value = new long[0];
+      }
+      else
+      {
+         value = new long[aL.length];
+         System.arraycopy(aL, 0, value, 0, value.length);
+      }
    }
 
    /**

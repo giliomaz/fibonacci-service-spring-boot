@@ -13,6 +13,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 import org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -102,6 +103,7 @@ public class FibonacciServiceTest
               .accept(MediaType.TEXT_HTML)
               .get();
       final String result = response.readEntity(String.class);
+      assertEquals(Status.OK.getStatusCode(), response.getStatus());
       assertEquals(expResult, result);
       LOGGER.finest("Finished.");
    }
@@ -123,6 +125,7 @@ public class FibonacciServiceTest
               .accept(MediaType.TEXT_HTML)
               .get();
       final String result = response.readEntity(String.class);
+      assertEquals(Status.OK.getStatusCode(), response.getStatus());
       assertEquals(expResult, result);
       LOGGER.finest("Finished.");
    }
@@ -157,6 +160,7 @@ public class FibonacciServiceTest
               .accept(MediaType.APPLICATION_XML)
               .get();
       final FibonacciResponseString result = response.readEntity(FibonacciResponseString.class);
+      assertEquals(Status.OK.getStatusCode(), response.getStatus());
       assertEquals(expResult, result.getValue());
       LOGGER.finest("Finished.");
    }
@@ -191,6 +195,7 @@ public class FibonacciServiceTest
               .accept(MediaType.APPLICATION_JSON)
               .get();
       final FibonacciResponseString result = response.readEntity(FibonacciResponseString.class);
+      assertEquals(Status.OK.getStatusCode(), response.getStatus());
       assertEquals(expResult, result.getValue());
       LOGGER.finest("Finished.");
    }
@@ -228,6 +233,7 @@ public class FibonacciServiceTest
               .accept(MediaType.APPLICATION_XML)
               .get();
       final FibonacciResponseArray result = response.readEntity(FibonacciResponseArray.class);
+      assertEquals(Status.OK.getStatusCode(), response.getStatus());
       assertArrayEquals(expResult, result.getValue());
       LOGGER.finest("Finished.");
    }
@@ -259,12 +265,13 @@ public class FibonacciServiceTest
          1779979416004714189L, 2880067194370816120L, 4660046610375530309L, 7540113804746346429L
       };
       final Client client = createClient();
-      final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacci");
+      final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacciArray");
       final Response response = target
               .request(MediaType.APPLICATION_JSON)
               .accept(MediaType.APPLICATION_JSON)
               .get();
       final FibonacciResponseArray result = response.readEntity(FibonacciResponseArray.class);
+      assertEquals(Status.OK.getStatusCode(), response.getStatus());
       assertArrayEquals(expResult, result.getValue());
       LOGGER.finest("Finished.");
    }
@@ -286,6 +293,7 @@ public class FibonacciServiceTest
               .accept(MediaType.APPLICATION_XML)
               .put(entity);
       final FibonacciResponseString result = response.readEntity(FibonacciResponseString.class);
+      assertEquals(Status.OK.getStatusCode(), response.getStatus());
       assertEquals(expResult, result.getValue());
       LOGGER.finest("Finished.");
    }
@@ -303,10 +311,11 @@ public class FibonacciServiceTest
       final Client client = createClient();
       final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacci");
       final Response response = target
-              .request(MediaType.APPLICATION_XML)
-              .accept(MediaType.APPLICATION_XML)
+              .request(MediaType.APPLICATION_JSON)
+              .accept(MediaType.APPLICATION_JSON)
               .put(entity);
       final FibonacciResponseString result = response.readEntity(FibonacciResponseString.class);
+      assertEquals(Status.OK.getStatusCode(), response.getStatus());
       assertEquals(expResult, result.getValue());
       LOGGER.finest("Finished.");
    }
@@ -331,6 +340,7 @@ public class FibonacciServiceTest
               .accept(MediaType.APPLICATION_XML)
               .put(entity);
       final FibonacciResponseArray result = response.readEntity(FibonacciResponseArray.class);
+      assertEquals(Status.OK.getStatusCode(), response.getStatus());
       assertArrayEquals(expResult, result.getValue());
       LOGGER.finest("Finished.");
    }
@@ -355,6 +365,7 @@ public class FibonacciServiceTest
               .accept(MediaType.APPLICATION_JSON)
               .put(entity);
       final FibonacciResponseArray result = response.readEntity(FibonacciResponseArray.class);
+      assertEquals(Status.OK.getStatusCode(), response.getStatus());
       assertArrayEquals(expResult, result.getValue());
       LOGGER.finest("Finished.");
    }
