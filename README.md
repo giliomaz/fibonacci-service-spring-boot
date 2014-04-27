@@ -71,5 +71,5 @@ This section includes the instructions necessary to build and have the web servi
 
 *NOTE:* The pathing with respect to the server can be configured via the <code>&lt;PROJ_DIR>web/META-INF/context.xml</code> file.
 
-*NOTE:* The internal pathing with respect to the service can be configured via the <code>@javax.ws.rs.ApplicationPath</code> annotation in the <code>ApplicationConfig.java</code> and <code>@Pathsource</code> annotation in the <code>&lt;PROJ_NAME>Service.java</code> source file.
+*NOTE:* The internal pathing with respect to the service can be configured via the <code>@javax.ws.rs.ApplicationPath</code> and <code>@Pathsource</code> annotations in the <code>ApplicationConfig.java</code> and <code>&lt;PROJ_NAME>Service.java</code> source files respectively.
 
