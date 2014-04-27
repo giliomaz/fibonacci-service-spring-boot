@@ -17,11 +17,9 @@ it was approached as if I would have to put it into production and maintain it f
 
 This section describes how to create the development environment that was originally used for this project.
 
-*NOTE:* All installation defaults were used unless otherwise noted.
-
-*NOTE:* All other versions of these applications were un-installed prior to the stated version being installed.
-
 *NOTE:* These instructions were performed on a fresh Ubuntu 14.04 LTS Desktop installation.
+
+*NOTE:* All installation defaults were used unless otherwise noted.
 
  - Install [JDK 7 u55](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html).
     - Follow the instructions at: http://askubuntu.com/questions/56104
@@ -58,7 +56,7 @@ This section includes the instructions necessary to build and have the web servi
     - Select menu <i>File -> Open Project</i>
     - Navigate to the cloned directory.
     - Click <code>Open Project</code>.
- - Build
+ - Build the project:
     - Right-Click on the project in the <i>Projects</i> tab.
     - In the pop-up menu Select <code>Clean and Bulid</code>.
     - In the <code>Output</code> tab a new tab titled <code>&lt;PROJ_NAME> (clean,dist)</code> will be opened.
@@ -68,10 +66,17 @@ This section includes the instructions necessary to build and have the web servi
     - In the pop-up menu Select <code>Deploy</code>.
     - In the <code>Output</code> tab a new tab titled <code>&lt;PROJ_NAME> (run-deploy)</code> will be opened.
     - When the text states <i>BUILD SUCCESSFUL</i> then the web service is deployed and ready to accept requests.
+ - Test the project:
+    - Right-Click on the project in the <i>Projects</i> tab.
+    - In the pop-up menu Select <code>Test</code>.
+    - In the <code>Output</code> tab a new tab titled <code>&lt;PROJ_NAME> (test)</code> will be opened.
+    - When the text states <i>BUILD SUCCESSFUL</i> then the testing is complete.
 
 *NOTE:* The pathing with respect to the server can be configured via the <code>&lt;PROJ_DIR>web/META-INF/context.xml</code> file.
 
 *NOTE:* The internal pathing with respect to the service can be configured via the <code>@javax.ws.rs.ApplicationPath</code> and <code>@Pathsource</code> annotations in the <code>ApplicationConfig.java</code> and <code>&lt;PROJ_NAME>Service.java</code> source files respectively.
+
+*NOTE:* The <i>Build</i> step above created a <code>.war</code> that is suitable for deployment to another container. The tests also define a <code>TEST_HOST</code> for testing an externally deployed service.
 
 ================
 

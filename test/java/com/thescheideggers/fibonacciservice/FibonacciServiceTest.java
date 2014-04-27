@@ -46,6 +46,22 @@ public class FibonacciServiceTest
     * Serial Version UID.
     */
    private static final long serialVersionUID = 103640251760933139L;
+   /**
+    * The host where the Web Service is located.
+    */
+   private static final String TEST_HOST = "http://localhost:8080";
+   /**
+    * The ApplicationPath of this Web Service.
+    */
+   private static final String TEST_APP = "FibonacciService";
+   /**
+    * The internal path of this Web Service.
+    */
+   private static final String TEST_PATH = "webresources";
+   /**
+    * The Target of these test.
+    */
+   private static final String TEST_TARGET = TEST_HOST+"/"+TEST_APP+"/"+TEST_PATH;
 
    public FibonacciServiceTest()
    {
@@ -98,7 +114,7 @@ public class FibonacciServiceTest
                                + "</body></html>";
       final Client client = ClientBuilder.newClient();
       client.register(JacksonJaxbJsonProvider.class);
-      final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacci");
+      final WebTarget target = client.target(TEST_TARGET+"/fibonacci");
       final Response response = target
               .request(MediaType.TEXT_HTML)
               .accept(MediaType.TEXT_HTML)
@@ -121,7 +137,7 @@ public class FibonacciServiceTest
                                + "</body></html>";
       final Client client = ClientBuilder.newClient();
       client.register(JacksonJaxbJsonProvider.class);
-      final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacci/5");
+      final WebTarget target = client.target(TEST_TARGET+"/fibonacci/5");
       final Response response = target
               .request(MediaType.TEXT_HTML)
               .accept(MediaType.TEXT_HTML)
@@ -144,7 +160,7 @@ public class FibonacciServiceTest
                                + "</body></html>";
       final Client client = ClientBuilder.newClient();
       client.register(JacksonJaxbJsonProvider.class);
-      final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacci/-1");
+      final WebTarget target = client.target(TEST_TARGET+"/fibonacci/-1");
       final Response response = target
               .request(MediaType.TEXT_HTML)
               .accept(MediaType.TEXT_HTML)
@@ -180,7 +196,7 @@ public class FibonacciServiceTest
                                + "1779979416004714189 2880067194370816120 4660046610375530309 7540113804746346429";
       final Client client = ClientBuilder.newClient();
       client.register(JacksonJaxbJsonProvider.class);
-      final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacci");
+      final WebTarget target = client.target(TEST_TARGET+"/fibonacci");
       final Response response = target
               .request(MediaType.APPLICATION_XML)
               .accept(MediaType.APPLICATION_XML)
@@ -216,7 +232,7 @@ public class FibonacciServiceTest
                                + "1779979416004714189 2880067194370816120 4660046610375530309 7540113804746346429";
       final Client client = ClientBuilder.newClient();
       client.register(JacksonJaxbJsonProvider.class);
-      final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacci");
+      final WebTarget target = client.target(TEST_TARGET+"/fibonacci");
       // @TODO: By changing the encoding of the Request from JSON to XML, everything works.
       final Response response = target
               //.request(MediaType.APPLICATION_JSON)
@@ -257,7 +273,7 @@ public class FibonacciServiceTest
       };
       final Client client = ClientBuilder.newClient();
       client.register(JacksonJaxbJsonProvider.class);
-      final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacciArray");
+      final WebTarget target = client.target(TEST_TARGET+"/fibonacciArray");
       final Response response = target
               .request(MediaType.APPLICATION_XML)
               .accept(MediaType.APPLICATION_XML)
@@ -296,7 +312,7 @@ public class FibonacciServiceTest
       };
       final Client client = ClientBuilder.newClient();
       client.register(JacksonJaxbJsonProvider.class);
-      final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacciArray");
+      final WebTarget target = client.target(TEST_TARGET+"/fibonacciArray");
       // @TODO: By changing the encoding of the Request from JSON to XML, everything works.
       final Response response = target
               //.request(MediaType.APPLICATION_JSON)
@@ -320,7 +336,7 @@ public class FibonacciServiceTest
       final FibonacciRequest request = new FibonacciRequest(5);
       final Client client = ClientBuilder.newClient();
       client.register(JacksonJaxbJsonProvider.class);
-      final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacci");
+      final WebTarget target = client.target(TEST_TARGET+"/fibonacci");
       final Response response = target
               .request(MediaType.APPLICATION_XML)
               .accept(MediaType.APPLICATION_XML)
@@ -342,7 +358,7 @@ public class FibonacciServiceTest
       final FibonacciRequest request = new FibonacciRequest(5);
       final Client client = ClientBuilder.newClient();
       client.register(JacksonJaxbJsonProvider.class);
-      final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacci");
+      final WebTarget target = client.target(TEST_TARGET+"/fibonacci");
       // @TODO: By changing the encoding of the Request from JSON to XML, everything works.
       final Response response = target
               //.request(MediaType.APPLICATION_JSON)
@@ -367,7 +383,7 @@ public class FibonacciServiceTest
       final FibonacciRequest request = new FibonacciRequest(-1);
       final Client client = ClientBuilder.newClient();
       client.register(JacksonJaxbJsonProvider.class);
-      final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacci");
+      final WebTarget target = client.target(TEST_TARGET+"/fibonacci");
       // @TODO: By changing the encoding of the Request from JSON to XML, everything works.
       final Response response = target
               //.request(MediaType.APPLICATION_JSON)
@@ -395,7 +411,7 @@ public class FibonacciServiceTest
       final FibonacciRequest request = new FibonacciRequest(5);
       final Client client = ClientBuilder.newClient();
       client.register(JacksonJaxbJsonProvider.class);
-      final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacciArray");
+      final WebTarget target = client.target(TEST_TARGET+"/fibonacciArray");
       final Response response = target
               .request(MediaType.APPLICATION_XML)
               .accept(MediaType.APPLICATION_XML)
@@ -420,7 +436,7 @@ public class FibonacciServiceTest
       final FibonacciRequest request = new FibonacciRequest(5);
       final Client client = ClientBuilder.newClient();
       client.register(JacksonJaxbJsonProvider.class);
-      final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacciArray");
+      final WebTarget target = client.target(TEST_TARGET+"/fibonacciArray");
       // @TODO: By changing the encoding of the Request from JSON to XML, everything works.
       final Response response = target
               //.request(MediaType.APPLICATION_JSON)
@@ -445,7 +461,7 @@ public class FibonacciServiceTest
       final FibonacciRequest request = new FibonacciRequest(-1);
       final Client client = ClientBuilder.newClient();
       client.register(JacksonJaxbJsonProvider.class);
-      final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacciArray");
+      final WebTarget target = client.target(TEST_TARGET+"/fibonacciArray");
       // @TODO: By changing the encoding of the Request from JSON to XML, everything works.
       final Response response = target
               //.request(MediaType.APPLICATION_JSON)
