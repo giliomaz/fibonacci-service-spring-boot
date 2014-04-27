@@ -73,3 +73,13 @@ This section includes the instructions necessary to build and have the web servi
 
 *NOTE:* The internal pathing with respect to the service can be configured via the <code>@javax.ws.rs.ApplicationPath</code> and <code>@Pathsource</code> annotations in the <code>ApplicationConfig.java</code> and <code>&lt;PROJ_NAME>Service.java</code> source files respectively.
 
+================
+
+## Further Reading
+
+These pages all provided valuable information in my quest to create my first RESTful web-service.
+
+ - http://tomee.apache.org/examples-trunk/rest-xml-json/README.html
+ - http://vichargrave.com/restful-web-service-development-with-netbeans-and-tomcat-tutorial/
+ - http://engineering.tango.me/post/25683784643/restful-services-with-json-xml-content
+ - http://blog.webstarworks.com/2014/02/testing-the-jax-rs-restful-web-service
