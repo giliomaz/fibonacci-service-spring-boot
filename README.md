@@ -15,11 +15,11 @@ it was approached as if I would have to put it into production and maintain it f
 
 ## Development Environment
 
-This section describes how to create the development environment used for this project.
+This section describes how to create the development environment that was originally used for this project.
 
 *NOTE:* All installation defaults were used unless otherwise noted.
 
-*NOTE:* All other versions of these applications were un-installed prior to these versions being installed.
+*NOTE:* All other versions of these applications were un-installed prior to the stated version being installed.
  
  - Install [JDK 7 u55](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html).
     - Create/Update the <code>JAVA_HOME</code> user environment variable with the <code>&lt;JDK_DIR></code>
@@ -41,8 +41,17 @@ This section describes how to create the development environment used for this p
     - Create/Update the <code>ANT_HOME</code> user environment variable with the <code>%NB_HOME%\java\ant</code>.
     - IF <code>%ANT_HOME%\bin</code> is not already part of the <code>DEV_PATH</code> user environment variable, THEN add it.
     - Start the NetBeans IDE.
-    - Select <i>Tools -> Java Platforms</i>
-       - Click <code>Add Platform ...</code> and select the JDK 7 directory to add JDK 1.7 to the environment.
+    - Select menu <i>Tools -> Java Platforms</i>
+       - Click <code>Add Platform ...</code>
+       - Select the JDK 7 directory to add JDK 1.7 to the environment.
+       - Click <code>Close</code>
+    - Select menu <i>Tools -> Servers</i>
+       - Click <code>Add Server ...</code>
+       - Select Server type <code>Apache Tomcat or TomEE<code>.
+       - Click <code>Next ></code>
+       - For the Server Location enter the <code>CATALINA_HOME</code>.
+       - Enter the Username/Password of an exisiting user with the <code>manager-script</code> role or check the box to create it.
+       - Click <code>Finish</code>
        - Click <code>Close</code>
 
 ================
