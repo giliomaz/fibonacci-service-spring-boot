@@ -39,6 +39,10 @@ public class FibonacciResponseArray
     * The "Value" of this Response.
     */
    private long[] value;
+   /**
+    * Any error codes for this response.
+    */
+   private String error;
 
    /**
     * Public no-arg constructor to initialize the "Value" at a minimum.
@@ -46,14 +50,16 @@ public class FibonacciResponseArray
    public FibonacciResponseArray()
    {
       value = new long[0];
+      error = null;
    }
 
    /**
     * Constructs a new Response with the specified "Value".
     * <p/>
     * @param aL the initial value
+    * @param err any error codes.
     */
-   public FibonacciResponseArray(final long[] aL)
+   public FibonacciResponseArray(final long[] aL, final String err)
    {
       if(aL == null || aL.length == 0)
       {
@@ -64,6 +70,7 @@ public class FibonacciResponseArray
          value = new long[aL.length];
          System.arraycopy(aL, 0, value, 0, value.length);
       }
+      error = err;
    }
 
    /**
@@ -102,5 +109,25 @@ public class FibonacciResponseArray
          value = new long[aL.length];
          System.arraycopy(aL, 0, value, 0, value.length);
       }
+   }
+
+   /**
+    * Returns the error of this Response.
+    * <p/>
+    * @return the error of this Response
+    */
+   public String getError()
+   {
+      return error;
+   }
+
+   /**
+    * Sets the error of this Response.
+    * <p>
+    * @param err the new error
+    */
+   public void setError(final String err)
+   {
+      error = err;
    }
 }

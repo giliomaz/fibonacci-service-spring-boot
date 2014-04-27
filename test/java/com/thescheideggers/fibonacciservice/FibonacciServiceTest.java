@@ -133,6 +133,29 @@ public class FibonacciServiceTest
    }
 
    /**
+    * Test of getFibonacciHtml method, of class Test.
+    */
+   @Test
+   public void testGetFibonacciHtml_Neg()
+   {
+      LOGGER.finest("Starting...");
+      final String expResult = "<html><body>"
+                               + "Length was less than 1. [-1]"
+                               + "</body></html>";
+      final Client client = ClientBuilder.newClient();
+      client.register(JacksonJaxbJsonProvider.class);
+      final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacci/-1");
+      final Response response = target
+              .request(MediaType.TEXT_HTML)
+              .accept(MediaType.TEXT_HTML)
+              .get();
+      final String result = response.readEntity(String.class);
+      assertEquals(Status.OK.getStatusCode(), response.getStatus());
+      assertEquals(expResult, result);
+      LOGGER.finest("Finished.");
+   }
+
+   /**
     * Test of getFibonacciString method, of class FibonacciService.
     */
    @Test
@@ -334,6 +357,31 @@ public class FibonacciServiceTest
    }
 
    /**
+    * Test of putFibonacciString method, of class Test.
+    */
+   @Test
+   public void testPutFibonacciString_Neg()
+   {
+      LOGGER.finest("Starting...");
+      final String expResult = "Length was less than 1. [-1]";
+      final FibonacciRequest request = new FibonacciRequest(-1);
+      final Client client = ClientBuilder.newClient();
+      client.register(JacksonJaxbJsonProvider.class);
+      final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacci");
+      // @TODO: By changing the encoding of the Request from JSON to XML, everything works.
+      final Response response = target
+              //.request(MediaType.APPLICATION_JSON)
+              .request(MediaType.APPLICATION_XML)
+              .accept(MediaType.APPLICATION_JSON)
+              //.put(Entity.json(request));
+              .put(Entity.xml(request));
+      final FibonacciResponseString result = response.readEntity(FibonacciResponseString.class);
+      assertEquals(Status.OK.getStatusCode(), response.getStatus());
+      assertEquals(expResult, result.getValue());
+      LOGGER.finest("Finished.");
+   }
+
+   /**
     * Test of putFibonacciArray method, of class FibonacciService.
     */
    @Test
@@ -344,10 +392,10 @@ public class FibonacciServiceTest
       {
          0L, 1L, 1L, 2L, 3L
       };
+      final FibonacciRequest request = new FibonacciRequest(5);
       final Client client = ClientBuilder.newClient();
       client.register(JacksonJaxbJsonProvider.class);
       final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacciArray");
-      final FibonacciRequest request = new FibonacciRequest(5);
       final Response response = target
               .request(MediaType.APPLICATION_XML)
               .accept(MediaType.APPLICATION_XML)
@@ -369,10 +417,10 @@ public class FibonacciServiceTest
       {
          0L, 1L, 1L, 2L, 3L
       };
+      final FibonacciRequest request = new FibonacciRequest(5);
       final Client client = ClientBuilder.newClient();
       client.register(JacksonJaxbJsonProvider.class);
       final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacciArray");
-      final FibonacciRequest request = new FibonacciRequest(5);
       // @TODO: By changing the encoding of the Request from JSON to XML, everything works.
       final Response response = target
               //.request(MediaType.APPLICATION_JSON)
@@ -383,6 +431,32 @@ public class FibonacciServiceTest
       final FibonacciResponseArray result = response.readEntity(FibonacciResponseArray.class);
       assertEquals(Status.OK.getStatusCode(), response.getStatus());
       assertArrayEquals(expResult, result.getValue());
+      LOGGER.finest("Finished.");
+   }
+
+   /**
+    * Test of putFibonacciArray method, of class Test.
+    */
+   @Test
+   public void testPutFibonacciArray_Neg()
+   {
+      LOGGER.finest("Starting...");
+      final String expResult = "Length was less than 1. [-1]";
+      final FibonacciRequest request = new FibonacciRequest(-1);
+      final Client client = ClientBuilder.newClient();
+      client.register(JacksonJaxbJsonProvider.class);
+      final WebTarget target = client.target("http://localhost:8080/FibonacciService/webresources/fibonacciArray");
+      // @TODO: By changing the encoding of the Request from JSON to XML, everything works.
+      final Response response = target
+              //.request(MediaType.APPLICATION_JSON)
+              .request(MediaType.APPLICATION_XML)
+              .accept(MediaType.APPLICATION_JSON)
+              //.put(Entity.json(request));
+              .put(Entity.xml(request));
+      final FibonacciResponseArray result = response.readEntity(FibonacciResponseArray.class);
+      assertEquals(Status.OK.getStatusCode(), response.getStatus());
+      assertArrayEquals(new long[0], result.getValue());
+      assertEquals(expResult, result.getError());
       LOGGER.finest("Finished.");
    }
 }

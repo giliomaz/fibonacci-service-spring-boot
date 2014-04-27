@@ -148,7 +148,16 @@ public class FibonacciService
    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
    public FibonacciResponseArray getFibonacciArray()
    {
-      return new FibonacciResponseArray(FibonacciImpl.getFibonacci(FibonacciImpl.LEN_MAX));
+      final FibonacciResponseArray rtn = new FibonacciResponseArray();
+      try
+      {
+         rtn.setValue(FibonacciImpl.getFibonacci(FibonacciImpl.LEN_MAX));
+      }
+      catch(IllegalArgumentException ex)
+      {
+         rtn.setError(ex.getMessage());
+      }
+      return rtn;
    }
 
    /**
@@ -180,6 +189,15 @@ public class FibonacciService
    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
    public FibonacciResponseArray putFibonacciArray(final FibonacciRequest request)
    {
-      return new FibonacciResponseArray(FibonacciImpl.getFibonacci(request.getValue()));
+      final FibonacciResponseArray rtn = new FibonacciResponseArray();
+      try
+      {
+         rtn.setValue(FibonacciImpl.getFibonacci(request.getValue()));
+      }
+      catch(IllegalArgumentException ex)
+      {
+         rtn.setError(ex.getMessage());
+      }
+      return rtn;
    }
 }
