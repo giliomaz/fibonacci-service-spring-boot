@@ -1,29 +1,32 @@
-*/private/*
-bak
-bin
-build
-classes
-dist
-fuscus
-obj
-log
-database
-captures
-tmp
-tmp.txt
-Output
-*.kml
-*.user
-*.suo
-*.sln.cache
-*.ncb
-*.vcproj.*.user
-*.hzs
-*.bak
+## java specific
+!.gitignore
+*.lic
+**/target/
+
+## vim objects
+*.swo
+*.swp
+
+## IntelliJ IDEA
+*.iml
+*.ipr
+*.iws
+.idea/
+local/
+classes/
+
+# Gradle bits from: https://github.com/github/gitignore/blob/master/Gradle.gitignore
+.gradle
+build/
+.gradletasknamecache
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+## generic files to ignore
 *~
-*.vpp~*
-*.pb2
-*.local
-Thumbs.db
-AssemblyInfo.java
-GitDescription.java
+*.lock
+*.DS_Store
+*.swp
+*.out
+jmeter.log
