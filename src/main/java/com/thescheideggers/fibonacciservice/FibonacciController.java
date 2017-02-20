@@ -75,7 +75,7 @@ public class FibonacciController {
     @RequestMapping(
             path = {"/fibonacci", "/fibonacci/{length}"},
             method = GET,
-            produces = {APPLICATION_JSON_VALUE, TEXT_XML_VALUE, TEXT_HTML_VALUE})
+            produces = {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE, TEXT_HTML_VALUE})
     public FibonacciResponseString getFibonacciString(HttpServletResponse response, @PathVariable(required = false) Optional<Integer> length) {
         final FibonacciResponseString rtn = new FibonacciResponseString(counter.incrementAndGet());
         try {
@@ -90,7 +90,7 @@ public class FibonacciController {
     @RequestMapping(
             path = {"/fibonacciArray", "/fibonacciArray/{length}"},
             method = GET,
-            produces = {APPLICATION_JSON_VALUE, TEXT_XML_VALUE, TEXT_HTML_VALUE})
+            produces = {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE, TEXT_HTML_VALUE})
     public FibonacciResponse getFibonacciArray(HttpServletResponse response, @PathVariable(required = false) Optional<Integer> length) {
         final FibonacciResponseArray rtn = new FibonacciResponseArray(counter.incrementAndGet());
         try {
@@ -105,7 +105,7 @@ public class FibonacciController {
     @RequestMapping(
             path = "/fibonacci",
             method = PUT,
-            produces = {APPLICATION_JSON_VALUE, TEXT_XML_VALUE, TEXT_HTML_VALUE})
+            produces = {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE, TEXT_HTML_VALUE})
     public FibonacciResponseString putFibonacciString(HttpServletResponse response, FibonacciRequest fibReq) {
         final FibonacciResponseString rtn = new FibonacciResponseString(counter.incrementAndGet());
         try {
@@ -120,7 +120,7 @@ public class FibonacciController {
     @RequestMapping(
             path = "/fibonacciArray",
             method = PUT,
-            produces = {APPLICATION_JSON_VALUE, TEXT_XML_VALUE, TEXT_HTML_VALUE})
+            produces = {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE, TEXT_HTML_VALUE})
     public FibonacciResponse putFibonacciArray(HttpServletResponse response, FibonacciRequest fibReq) {
         final FibonacciResponseArray rtn = new FibonacciResponseArray(counter.incrementAndGet());
         try {

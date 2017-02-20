@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author <a href="mailto:William.Scheidegger@GMail.com?subject=FibonacciResponseArray%20JavaDoc">William Scheidegger</a>
  */
-@XmlRootElement
+@XmlRootElement(name="FibonacciResponse")
 public class FibonacciResponseArray extends FibonacciResponse {
     ///**
     // * Class name.
