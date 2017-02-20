@@ -2,83 +2,35 @@
 A RESTful web service that:
 
  - Accepts a number, <code>n</code>, as input and returns the first <code>n</code> Fibonacci numbers, starting from 0.
-   (i.e. given n = 5, the output would be the sequence "0 1 1 2 3")
+   (i.e. given `n = 5`, the output would be the sequence "_0 1 1 2 3_")
  - The service returns the values as a String in a JSON document.
- - Given Zero or a negative number, it responds with an error String in the JSON document.
+ - Given Zero or a negative number, it responds with a status code of __FORBIDDEN__ (403) and an error String in the JSON document.
  - There are unit tests that assert the algorithm output is correct.
- - The upper boundary on the input is 93 since the 94 value causes an overflow of a 64-bit signed value.
+ - The upper boundary on the input is _93_ since the _94_ value causes an overflow of a 64-bit signed value.
+ - Given a value above the upper boundary, it responds with a status code of __FORBIDDEN__ (403) and an error String in the JSON document.
 
 While this project is admittedly trivial since it is my first attempt at a RESTful web service,
 it was approached as if I would have to put it into production and maintain it for a significant period of time.
 
-================
+UPDATE: I have started migrating this app to SpringBoot as I'm learning this new to me technology, but I'm continuing to
+follow the mindset of producing a long-term production quality application.
 
-## Development Environment
+NOTE: This is still in migration and the XML and HTML encodings are not currently working.
 
-This section describes how to create the development environment that was originally used for this project.
-
-*NOTE:* These instructions were performed on a fresh Ubuntu 14.04 LTS Desktop installation.
-
-*NOTE:* All installation defaults were used unless otherwise noted.
-
- - Install [JDK 7 u55](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html).
-    - Follow the instructions at: http://askubuntu.com/questions/56104
- - Install Apache Tomcat with TomEE
-    - Follow the instructions at: http://tomee.apache.org/installation-drop-in-war.html
- - Install [NetBeans v8.0]("https://netbeans.org/downloads/").
-    - Follow the instructions at: https://netbeans.org/community/releases/80/install.html
- - Add the JDK and TomEE to the NetBeans installation.
-    - Start NetBeans.
-    - Select menu <i>Tools -> Java Platforms</i>
-       - Click <code>Add Platform ...</code>
-       - Select the JDK 7 directory to add JDK 1.7 to the environment.
-       - Click <code>Close</code>
-    - Select menu <i>Tools -> Servers</i>
-       - Click <code>Add Server ...</code>
-       - Select Server type <code>Apache Tomcat or TomEE<code>.
-       - Click <code>Next ></code>
-       - For the Server Location enter the <code>CATALINA_HOME</code>.
-       - Enter the Username/Password of an exisiting user with the <code>manager-script</code> role or check the box to create it.
-       - Click <code>Finish</code>
-       - Click <code>Close</code>
-
-================
+NOTE: This is still in migration and the POST endpoints are not currently working.
 
 ## Build/Deployment Instructions
 
 This section includes the instructions necessary to build and have the web service accepting requests and responding to them.
 
-*NOTE:* It is assumed the previously documented installation has already been performed.
-
  - Clone this [git repository](https://github.com/wdsdhei/FibonacciService.git).
- - Start NetBeans.
- - Open the project:
-    - Select menu <i>File -> Open Project</i>
-    - Navigate to the cloned directory.
-    - Click <code>Open Project</code>.
- - Build the project:
-    - Right-Click on the project in the <i>Projects</i> tab.
-    - In the pop-up menu Select <code>Clean and Bulid</code>.
-    - In the <code>Output</code> tab a new tab titled <code>&lt;PROJ_NAME> (clean,dist)</code> will be opened.
-    - When the text states <i>BUILD SUCCESSFUL</i> then the web service is ready to deploy.
- - Deploy the project:
-    - Right-Click on the project in the <i>Projects</i> tab.
-    - In the pop-up menu Select <code>Deploy</code>.
-    - In the <code>Output</code> tab a new tab titled <code>&lt;PROJ_NAME> (run-deploy)</code> will be opened.
-    - When the text states <i>BUILD SUCCESSFUL</i> then the web service is deployed and ready to accept requests.
- - Test the project:
-    - Right-Click on the project in the <i>Projects</i> tab.
-    - In the pop-up menu Select <code>Test</code>.
-    - In the <code>Output</code> tab a new tab titled <code>&lt;PROJ_NAME> (test)</code> will be opened.
-    - When the text states <i>BUILD SUCCESSFUL</i> then the testing is complete.
-
-*NOTE:* The pathing with respect to the server can be configured via the <code>&lt;PROJ_DIR>web/META-INF/context.xml</code> file.
-
-*NOTE:* The internal pathing with respect to the service can be configured via the <code>@javax.ws.rs.ApplicationPath</code> and <code>@Pathsource</code> annotations in the <code>ApplicationConfig.java</code> and <code>&lt;PROJ_NAME>Service.java</code> source files respectively.
-
-*NOTE:* The <i>Build</i> step above created a <code>.war</code> that is suitable for deployment to another container. The tests also define a <code>TEST_HOST</code> for testing an externally deployed service.
-
-================
+ - Execute the following:
+    - `./gradlew clean bootRun`
+ - Access the endpoint(s) with a web browser or CLI tool like `curl`:
+    - `curl -iv http://localhost:8080/fibonacci`
+    - `curl -iv http://localhost:8080/fibonacci/0`
+    - `curl -iv http://localhost:8080/fibonacci/50`
+    - `curl -iv http://localhost:8080/fibonacci/100`
 
 ## Further Reading
 
