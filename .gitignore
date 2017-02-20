@@ -30,3 +30,4 @@ gradle-app.setting
 *.swp
 *.out
 jmeter.log
+tmp
