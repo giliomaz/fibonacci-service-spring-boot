@@ -30,7 +30,7 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.logging.Logger;
 
-import static org.springframework.http.HttpHeaders.ACCEPT_ENCODING;
+import static org.springframework.http.HttpHeaders.ACCEPT;
 import static org.springframework.http.HttpHeaders.CONTENT_ENCODING;
 import static org.springframework.http.MediaType.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -134,7 +134,7 @@ public class FibonacciControllerTest {
         LOGGER.finest("Starting...");
         final String expResult = HTML_HEADER_STRING + KAT_93_STRING + HTML_FOOTER_STRING;
         this.mockMvc.perform(
-                get("/fibonacci").header(ACCEPT_ENCODING, TEXT_HTML_VALUE))
+                get("/fibonacci").header(ACCEPT, TEXT_HTML_VALUE))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(expResult));
@@ -148,7 +148,7 @@ public class FibonacciControllerTest {
     public void testGetFibonacciString_XML_Zero() throws Exception {
         LOGGER.finest("Starting...");
         this.mockMvc.perform(
-                get("/fibonacci").header(ACCEPT_ENCODING, APPLICATION_XML_VALUE))
+                get("/fibonacci").header(ACCEPT, APPLICATION_XML_VALUE))
                 .andDo(print())
                 .andExpect(status().isOk());
                 // TODO: FIX_THIS
@@ -168,7 +168,7 @@ public class FibonacciControllerTest {
     public void testGetFibonacciString_JSON_Zero() throws Exception {
         LOGGER.finest("Starting...");
         this.mockMvc.perform(
-                get("/fibonacci").header(ACCEPT_ENCODING, APPLICATION_JSON_VALUE))
+                get("/fibonacci").header(ACCEPT, APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.value").value(KAT_93_STRING));
@@ -184,7 +184,7 @@ public class FibonacciControllerTest {
         LOGGER.finest("Starting...");
         final String expResult = HTML_HEADER_STRING + KAT_05_STRING + HTML_FOOTER_STRING;
         this.mockMvc.perform(
-                get("/fibonacci/5").header(ACCEPT_ENCODING, TEXT_HTML_VALUE))
+                get("/fibonacci/5").header(ACCEPT, TEXT_HTML_VALUE))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(expResult));
@@ -198,7 +198,7 @@ public class FibonacciControllerTest {
     public void testGetFibonacciString_XML_Positive() throws Exception {
         LOGGER.finest("Starting...");
         this.mockMvc.perform(
-                get("/fibonacci/5").header(ACCEPT_ENCODING, APPLICATION_XML_VALUE))
+                get("/fibonacci/5").header(ACCEPT, APPLICATION_XML_VALUE))
                 .andDo(print())
                 .andExpect(status().isOk());
                 // TODO: FIX_THIS
@@ -213,7 +213,7 @@ public class FibonacciControllerTest {
     public void testGetFibonacciString_JSON_Positive() throws Exception {
         LOGGER.finest("Starting...");
         this.mockMvc.perform(
-                get("/fibonacci/5").header(ACCEPT_ENCODING, APPLICATION_JSON_VALUE))
+                get("/fibonacci/5").header(ACCEPT, APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.value").value(KAT_05_STRING));
@@ -229,7 +229,7 @@ public class FibonacciControllerTest {
         LOGGER.finest("Starting...");
         final String expResult = HTML_HEADER_STRING + ERR_MSG_NEG + HTML_FOOTER_STRING;
         this.mockMvc.perform(
-                get("/fibonacci/-1").header(ACCEPT_ENCODING, TEXT_HTML_VALUE))
+                get("/fibonacci/-1").header(ACCEPT, TEXT_HTML_VALUE))
                 .andDo(print())
                 .andExpect(status().isForbidden())
                 .andExpect(content().string(expResult));
@@ -243,7 +243,7 @@ public class FibonacciControllerTest {
     public void testGetFibonacciString_XML_Negative() throws Exception {
         LOGGER.finest("Starting...");
         this.mockMvc.perform(
-                get("/fibonacci/-1").header(ACCEPT_ENCODING, APPLICATION_XML_VALUE))
+                get("/fibonacci/-1").header(ACCEPT, APPLICATION_XML_VALUE))
                 .andDo(print())
                 .andExpect(status().isForbidden());
                 // TODO: FIX_THIS
@@ -258,7 +258,7 @@ public class FibonacciControllerTest {
     public void testGetFibonacciString_JSON_Negative() throws Exception {
         LOGGER.finest("Starting...");
         this.mockMvc.perform(
-                get("/fibonacci/-1").header(ACCEPT_ENCODING, APPLICATION_JSON_VALUE))
+                get("/fibonacci/-1").header(ACCEPT, APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().isForbidden())
                 .andExpect(jsonPath("$.value").value(ERR_MSG_NEG));
@@ -273,7 +273,7 @@ public class FibonacciControllerTest {
     public void testGetFibonacciString_JSON_NonNumeric() throws Exception {
         LOGGER.finest("Starting...");
         this.mockMvc.perform(
-                get("/fibonacci/five").header(ACCEPT_ENCODING, APPLICATION_JSON_VALUE))
+                get("/fibonacci/five").header(ACCEPT, APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().isForbidden())
                 .andExpect(jsonPath("$.value").value(String.format(ERR_MSG_NON, "five")));
@@ -288,7 +288,7 @@ public class FibonacciControllerTest {
     public void testGetFibonacciArray_XML_Zero() throws Exception {
         LOGGER.finest("Starting...");
         this.mockMvc.perform(
-                get("/fibonacciArray").header(ACCEPT_ENCODING, APPLICATION_XML_VALUE))
+                get("/fibonacciArray").header(ACCEPT, APPLICATION_XML_VALUE))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(xpath("/*/value").string(KAT_93_STRING));
@@ -302,7 +302,7 @@ public class FibonacciControllerTest {
     public void testGetFibonacciArray_JSON_Zero() throws Exception {
         LOGGER.finest("Starting...");
         final ResultActions actions = this.mockMvc.perform(
-                get("/fibonacciArray").header(ACCEPT_ENCODING, APPLICATION_JSON_VALUE))
+                get("/fibonacciArray").header(ACCEPT, APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().isOk());
         for (int i = 0; i < KAT_93_ARRAY.length; ++i) {
@@ -322,7 +322,7 @@ public class FibonacciControllerTest {
         this.mockMvc.perform(
                 put("/fibonacci", request)
                         .header(CONTENT_ENCODING, APPLICATION_OCTET_STREAM_VALUE)
-                        .header(ACCEPT_ENCODING, APPLICATION_XML_VALUE))
+                        .header(ACCEPT, APPLICATION_XML_VALUE))
                 .andDo(print())
                 .andExpect(status().isOk());
                 // TODO: FIX_THIS
@@ -341,7 +341,7 @@ public class FibonacciControllerTest {
         this.mockMvc.perform(
                 put("/fibonacci", request)
                         .header(CONTENT_ENCODING, APPLICATION_OCTET_STREAM_VALUE)
-                        .header(ACCEPT_ENCODING, APPLICATION_JSON_VALUE))
+                        .header(ACCEPT, APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.value").value(KAT_05_STRING));
@@ -359,7 +359,7 @@ public class FibonacciControllerTest {
         this.mockMvc.perform(
                 put("/fibonacci", request)
                         .header(CONTENT_ENCODING, APPLICATION_OCTET_STREAM_VALUE)
-                        .header(ACCEPT_ENCODING, APPLICATION_XML_VALUE))
+                        .header(ACCEPT, APPLICATION_XML_VALUE))
                 .andDo(print())
                 .andExpect(status().isForbidden());
                 // TODO: FIX_THIS
@@ -378,7 +378,7 @@ public class FibonacciControllerTest {
         this.mockMvc.perform(
                 put("/fibonacci", request)
                         .header(CONTENT_ENCODING, APPLICATION_OCTET_STREAM_VALUE)
-                        .header(ACCEPT_ENCODING, APPLICATION_JSON_VALUE))
+                        .header(ACCEPT, APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().isForbidden())
                 .andExpect(jsonPath("$.error").value(ERR_MSG_NEG));
@@ -396,7 +396,7 @@ public class FibonacciControllerTest {
         this.mockMvc.perform(
                 put("/fibonacciArray", request)
                         .header(CONTENT_ENCODING, APPLICATION_OCTET_STREAM_VALUE)
-                        .header(ACCEPT_ENCODING, APPLICATION_XML_VALUE))
+                        .header(ACCEPT, APPLICATION_XML_VALUE))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(xpath("/*/value").string(KAT_05_STRING));
@@ -414,7 +414,7 @@ public class FibonacciControllerTest {
         final ResultActions actions = this.mockMvc.perform(
                 put("/fibonacciArray", request)
                         .header(CONTENT_ENCODING, APPLICATION_OCTET_STREAM_VALUE)
-                        .header(ACCEPT_ENCODING, APPLICATION_JSON))
+                        .header(ACCEPT, APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().isOk());
         for (int i = 0; i < KAT_05_ARRAY.length; ++i) {
@@ -434,7 +434,7 @@ public class FibonacciControllerTest {
         this.mockMvc.perform(
                 put("/fibonacciArray", request)
                         .header(CONTENT_ENCODING, APPLICATION_OCTET_STREAM_VALUE)
-                        .header(ACCEPT_ENCODING, APPLICATION_XML_VALUE))
+                        .header(ACCEPT, APPLICATION_XML_VALUE))
                 .andDo(print())
                 .andExpect(status().isForbidden())
                 .andExpect(xpath("/*/value").string(ERR_MSG_NEG));
@@ -453,7 +453,7 @@ public class FibonacciControllerTest {
         this.mockMvc.perform(
                 put("/fibonacciArray", request)
                         .header(CONTENT_ENCODING, APPLICATION_OCTET_STREAM_VALUE)
-                        .header(ACCEPT_ENCODING, APPLICATION_JSON_VALUE))
+                        .header(ACCEPT, APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().isForbidden())
                 .andExpect(jsonPath("$.error").value(expResult));
